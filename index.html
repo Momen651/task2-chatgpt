@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>كيف يمكن لـ ChatGPT مساعدة المبتدئين على فهم البرمجة؟</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F8F7FC; --card:#FFFFFF; --ink:#1E1B4B; --slate:#4B4878;
+    --line:#E4E1F5; --accent:#0D9488; --accent-dark:#0F766E; --violet:#7C3AED;
+    --code-bg:#1E1B4B; --code-text:#E0E7FF;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:'Tajawal',Arial,sans-serif; line-height:1.9; font-size:17px;}
+  a{color:var(--accent-dark);}
+  a:focus-visible, button:focus-visible{outline:3px solid var(--violet); outline-offset:2px;}
+  img{max-width:100%; display:block;}
+
+  header.top{background:var(--ink); color:#fff; padding:14px 24px; position:sticky; top:0; z-index:5;}
+  .top-inner{max-width:900px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;}
+  .brand{font-weight:800; font-size:15px;}
+  nav.toc{display:flex; gap:4px; overflow-x:auto; padding-bottom:2px;}
+  nav.toc a{color:#C7D2FE; text-decoration:none; font-size:13px; white-space:nowrap; padding:6px 10px; border-radius:6px;}
+  nav.toc a:hover{background:#332E73; color:#fff;}
+
+  .hero{max-width:900px; margin:0 auto; padding:52px 24px 20px; display:grid; grid-template-columns:1.15fr 1fr; gap:36px; align-items:center;}
+  .hero h1{font-size:clamp(24px,3.4vw,34px); line-height:1.4; margin:0 0 6px; font-weight:800;}
+  .hero .subtitle{color:var(--accent-dark); font-weight:700; font-size:15px; margin:0 0 18px;}
+  .meta-card{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px 18px;}
+  .meta-card p{margin:4px 0; color:var(--slate); font-size:15px;}
+  .meta-card strong{color:var(--ink);}
+
+  main{max-width:720px; margin:0 auto; padding:10px 24px 70px;}
+  section{padding:34px 0; border-top:1px solid var(--line);}
+  section:first-of-type{border-top:none;}
+  h2{font-size:22px; font-weight:800; margin:0 0 14px; display:flex; gap:10px; align-items:baseline;}
+  h2 .num{color:var(--accent-dark); font-variant-numeric:tabular-nums;}
+  h3{font-size:18px; font-weight:700; margin:24px 0 10px; color:var(--ink);}
+  p{color:#2E2A5C; margin:0 0 14px;}
+  strong{color:var(--ink); font-weight:700;}
+
+  .table-wrap{overflow-x:auto;}
+  table{width:100%; border-collapse:collapse; margin:14px 0 6px; font-size:15px;}
+  caption{text-align:right; color:var(--slate); font-size:13px; margin-bottom:8px;}
+  thead th{background:var(--ink); color:#fff; padding:10px 14px; text-align:right; font-weight:700;}
+  tbody td{padding:10px 14px; border-bottom:1px solid var(--line); vertical-align:top;}
+  tbody tr:nth-child(even){background:#F1EFFB;}
+
+  ol.steps, ul.plain{padding-inline-start:22px; margin:0 0 14px; color:#2E2A5C;}
+  ol.steps li, ul.plain li{margin-bottom:8px;}
+
+  .example{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:18px 20px; margin:16px 0;}
+  .example p{margin-bottom:10px;}
+  pre{background:var(--code-bg); color:var(--code-text); padding:14px 16px; border-radius:8px; overflow-x:auto; direction:ltr; text-align:left; font-size:13.5px; margin:10px 0;}
+  code{font-family:ui-monospace,Menlo,Consolas,monospace;}
+  p code, li code, td code{background:#EEEAFB; color:#1E1B4B; padding:2px 6px; border-radius:4px; font-size:14px;}
+  .prompt{background:#ECFDF5; border-inline-start:4px solid var(--accent); border-radius:6px; padding:12px 16px; font-style:normal; color:#064E3B; margin:10px 0;}
+
+  .stat-card{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px 20px; margin-bottom:12px;}
+  .stat-card strong{color:var(--accent-dark);}
+
+  .img-figure{margin:18px 0; text-align:center;}
+  .img-figure img{border:1px solid var(--line); border-radius:12px; background:#fff; margin:0 auto;}
+
+  .refs{list-style:none; padding:0; margin:0;}
+  .refs li{background:var(--card); border:1px solid var(--line); border-radius:8px; padding:12px 16px; margin-bottom:10px;}
+  .refs a{word-break:break-all; font-weight:600;}
+  .refs .src{display:block; color:var(--slate); font-size:13px; margin-top:2px; direction:ltr; text-align:right;}
+
+  footer{text-align:center; color:var(--slate); font-size:13px; padding:24px; border-top:1px solid var(--line);}
+
+  @media (max-width:720px){
+    .hero{grid-template-columns:1fr; padding-top:34px;}
+    section{padding:26px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <span class="brand">تطبيقات الإنترنت والمنصات الإلكترونية</span>
+    <nav class="toc" aria-label="فهرس الصفحة">
+      <a href="#intro">مقدمة</a>
+      <a href="#what">أولاً</a>
+      <a href="#ways">ثانيًا</a>
+      <a href="#examples">ثالثًا</a>
+      <a href="#studies">دراسات</a>
+      <a href="#limits">خامسًا</a>
+      <a href="#tips">سادسًا</a>
+      <a href="#conclusion">الخاتمة</a>
+      <a href="#refs">المراجع</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div>
+    <h1>كيف يمكن لـ ChatGPT مساعدة المبتدئين على فهم البرمجة؟</h1>
+    <p class="subtitle">الذكاء الاصطناعي للمطورين: كيف يساعد ChatGPT المبتدئين على فهم الأكواد البرمجية؟</p>
+    <div class="meta-card">
+      <p><strong>المادة:</strong> تطبيقات الإنترنت والمنصات الإلكترونية</p>
+      <p><strong>الاسم بالكامل:</strong> مؤمن ذكي فاروق ذكي</p>
+      <p><strong>الرقم الجامعي:</strong> 2502024</p>
+    </div>
+  </div>
+  <img src="ai-code-image.svg" alt="رسم توضيحي لمساعد ذكاء اصطناعي يشرح كودًا لمبتدئ: شرح نصي على اليسار، ولوحة كود بها خطأ تحول إلى صحيح على اليمين">
+</div>
+
+<main>
+
+  <section id="intro">
+    <h2><span class="num">1.</span> مقدمة</h2>
+    <p>يواجه المبتدئون في البرمجة العديد من الصعوبات، مثل قراءة الأكواد التي كتبها شخص آخر، وفهم رسائل الخطأ غير الواضحة، والتعامل مع المفاهيم المجردة مثل الحلقات التكرارية والدوال. في الماضي، كان الحل هو البحث على الإنترنت وفي المنتديات، أو سؤال أحد الزملاء أو المدرّس. أما اليوم، فتوجد أدوات الذكاء الاصطناعي التوليدي مثل <strong>ChatGPT</strong>، حيث يمكن للمبتدئين كتابة سؤال باللغة الطبيعية، حتى باللغة العربية، والحصول فورًا على شرح للكود البرمجي.</p>
+    <p>يناقش هذا البحث كيف يساعد ChatGPT المبتدئين على فهم الأكواد البرمجية من خلال أمثلة عملية، بالإضافة إلى فوائده وحدوده وفقًا لأحدث الدراسات.</p>
+  </section>
+
+  <section id="what">
+    <h2><span class="num">2.</span> أولاً: ما هو ChatGPT ولماذا يفيد المبتدئ؟</h2>
+    <p>يُعد ChatGPT نموذجًا لغويًا عالي القدرة، طورته شركة OpenAI، وهو يفهم النصوص البشرية ويُنشئ استجابات تشبه ردود البشر، كما يمكنه التعامل مع الأكواد البرمجية. ومن ميزات ChatGPT أنه متاح للمبتدئين في جميع الأوقات، فهو يقدم ملاحظات وتوضيحات من خلال المحادثة، ويمكن سؤاله عن السؤال نفسه عدة مرات وبطرق مختلفة حتى يصبح الشرح واضحًا، ولا يوجد ما يدعو إلى الخجل أو الخوف من سؤاله عدة مرات حتى لو كان السؤال بسيطًا.</p>
+    <div class="stat-card">
+      <strong>97.2%</strong> من الشروحات النصية — وجدت دراسة تناولت 72 تحديًا برمجيًا بلغة Python أن ChatGPT قدّم شرحًا نصيًا لـ70 منها، مما يشير إلى أن الشروحات تُعد جزءًا أساسيًا من طريقة استجابته.
+    </div>
+  </section>
+
+  <section id="ways">
+    <h2><span class="num">3.</span> ثانيًا: أهم الطرق التي يساعد بها ChatGPT المبتدئين</h2>
+    <div class="table-wrap">
+      <table>
+        <caption>جدول 1 — ملخص الطرق التي يساعد بها ChatGPT المبتدئين في فهم البرمجة</caption>
+        <thead><tr><th>الطريقة</th><th>كيف تساعد المبتدئ؟</th></tr></thead>
+        <tbody>
+          <tr><td>تفسير الكود سطرًا سطرًا</td><td>يلصق المبتدئ الكود ويطلب شرحه خطوة بخطوة؛ ألهمت الفكرة أدوات مثل <code>GPTutor</code> في محرر Visual Studio Code.</td></tr>
+          <tr><td>تفسير رسائل الخطأ وإصلاحها</td><td>إرسال الكود مع رسالة الخطأ للحصول على حل، بدلاً من الإحباط من رسائل غير مفهومة.</td></tr>
+          <tr><td>استخدام الأمثلة لفهم المفاهيم</td><td>شرح مفهوم مثل «الحلقة التكرارية» أو «الدالة» بتشبيه من الحياة اليومية أو مثال أبسط.</td></tr>
+          <tr><td>تحسين جودة الكود</td><td>مساعدة الطلاب على تنظيم الكود واتباع قواعد الكتابة الجيدة وتقليل التعقيد.</td></tr>
+          <tr><td>التعلم التفاعلي من خلال الأسئلة</td><td>سؤال «لماذا؟» أو «ماذا لو غيّرت هذا السطر؟» والحصول على إجابة فورية، كمدرّس خصوصي متاح دائمًا.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="examples">
+    <h2><span class="num">4.</span> ثالثًا: أمثلة عملية</h2>
+
+    <div class="example">
+      <h3>المثال الأول: شرح كود بسيط</h3>
+      <p>لنفترض أن مبتدئًا وجد الكود التالي ولم يفهمه:</p>
+      <pre><code>numbers = [3, 8, 1, 6]
+total = 0
+for n in numbers:
+    if n > 5:
+        total += n
+print(total)</code></pre>
+      <p>إذا طلبت من ChatGPT شرح هذا الكود، فسيخبرك عادةً أنه ينشئ قائمة من الأرقام، ويبدأ المجموع من الصفر، ثم يمر على كل رقم ويضيف فقط الأرقام الأكبر من 5 إلى المجموع. الرقمان الأكبر من 5 هما 8 و6 فقط، لذلك فإن الناتج النهائي هو 14، أي 8 + 6.</p>
+    </div>
+
+    <div class="example">
+      <h3>الحالة الثانية: تفسير الأخطاء</h3>
+      <p>كود يحتوي على خطأ في الصياغة (<code>SyntaxError</code>) ناتج عن نسيان قوس الإغلاق:</p>
+      <pre><code>print("Hello"</code></pre>
+      <p>سيوضح ChatGPT أن الخطأ ناتج عن حذف القوس المغلق، ويكون الناتج الصحيح هو:</p>
+      <pre><code>print("Hello")</code></pre>
+    </div>
+
+    <div class="example">
+      <h3>المثال الثالث: طلب مناسب للمبتدئين</h3>
+      <p>من الأفضل أن يكتب المتعلم طلبًا واضحًا، مثل:</p>
+      <p class="prompt">«اشرح لي هذا الكود كما لو كنت مبتدئًا، وبسّط كل سطر على حدة، ثم أعطني مثالاً مشابهًا لأحاول حله بنفسي.»</p>
+    </div>
+  </section>
+
+  <section id="studies">
+    <h2><span class="num">5.</span> ماذا تقول الدراسات؟</h2>
+    <ul class="plain">
+      <li>في دراسة شملت 32 مستخدمًا، ساعدت أداة لفهم الكود مبنية على نموذج لغوي المستخدمين على إكمال مهام فهم الكود بفاعلية أكبر مقارنةً بالبحث على الويب.</li>
+      <li>أُجري تحليل لكيفية استخدام 298 طالبًا يدرسون مقررًا تمهيديًا في البرمجة بإحدى الجامعات الألمانية لـ ChatGPT وكيفية تقييمهم له.</li>
+      <li>وفقًا لدراسة حديثة، يمكن لـ ChatGPT تحسين جودة الكود وكفاءته لدى المبتدئين، لكنه لا يؤدي بالضرورة إلى تحسين الفهم المفاهيمي.</li>
+    </ul>
+  </section>
+
+  <section id="limits">
+    <h2><span class="num">6.</span> خامسًا: التحديات والقيود</h2>
+    <ul class="plain">
+      <li><strong>الاعتماد المفرط:</strong> قد يكتفي الطلاب المبتدئون بالإجابات الجاهزة دون أن يتعلموا منها شيئًا، وأشارت إجابات الطلاب إلى أن بعضهم كان يطلب إجابات فورية فقط.</li>
+      <li>قد يحتوي شرح ChatGPT أو الكود الذي يقدمه على أخطاء، ولذلك يجب اختباره أو التحقق منه.</li>
+      <li>فكّر وحاول حل المشكلات بنفسك بدلاً من الاعتماد على الشروحات الجاهزة.</li>
+      <li>بعض الدراسات أُجريت على عينات صغيرة، وتشير الدراسات نفسها إلى ضرورة إجراء دراسات أكثر شمولاً وتنوعًا.</li>
+    </ul>
+  </section>
+
+  <section id="tips">
+    <h2><span class="num">7.</span> سادسًا: نصائح للاستخدام الصحيح</h2>
+    <ol class="steps">
+      <li>حاول فهم الكود بنفسك أولًا، ثم اسأل.</li>
+      <li>اطلب الشرح، وليس الحل الجاهز فقط.</li>
+      <li>اختبر الكود دائمًا وتحقق من النتيجة.</li>
+      <li>اطلب أمثلة مشابهة للتدرب عليها بنفسك.</li>
+      <li>تحقق من المعلومات المهمة من مصدر موثوق، مثل التوثيق الرسمي للغة البرمجة.</li>
+    </ol>
+  </section>
+
+  <section id="conclusion">
+    <h2><span class="num">8.</span> الخاتمة</h2>
+    <p>يُعتبر ChatGPT أداة قوية للمبتدئين؛ فهو يشرح الأكواد، ويفسر الأخطاء، ويبسط المفاهيم، ويساعد في كتابة كود أكثر تنظيمًا. ومع ذلك، فهو أداة للمساعدة وليس بديلاً عن التعلم والتدريب، ولن يكون مفيدًا حقًا إلا إذا استخدمه المتعلم للفهم بدلاً من نسخ الإجابات.</p>
+  </section>
+
+  <section id="refs">
+    <h2><span class="num">9.</span> المراجع</h2>
+    <ul class="refs">
+      <li><a href="https://doi.org/10.1109/ACCESS.2024.3445432" target="_blank" rel="noopener">Haindl, P., &amp; Weinberger, G. (2024). Does ChatGPT Help Novice Programmers Write Better Code? Results From Static Code Analysis. IEEE Access, 12.</a><span class="src">doi.org</span></li>
+      <li><a href="https://arxiv.org/pdf/2307.08177" target="_blank" rel="noopener">Nam, D., et al. (2023). Using an LLM to Help With Code Understanding. arXiv:2307.08177.</a><span class="src">arxiv.org</span></li>
+      <li><a href="https://arxiv.org/pdf/2305.01863" target="_blank" rel="noopener">GPTutor: a ChatGPT-powered programming tool for code explanation. (2023). arXiv:2305.01863.</a><span class="src">arxiv.org</span></li>
+      <li><a href="https://arxiv.org/abs/2407.20792v1" target="_blank" rel="noopener">Scholl, A., &amp; Kiesler, N. (2024). How Novice Programmers Use and Experience ChatGPT when Solving Programming Exercises in an Introductory Course. arXiv:2407.20792.</a><span class="src">arxiv.org</span></li>
+      <li><a href="https://arxiv.org/pdf/2308.08572" target="_blank" rel="noopener">Large Language Models in Introductory Programming Education: ChatGPT's Performance and Implications for Assessments. (2023). arXiv:2308.08572.</a><span class="src">arxiv.org</span></li>
+      <li><a href="https://arxiv.org/pdf/2510.00946" target="_blank" rel="noopener">ChatGPT in Introductory Programming: Counterbalanced Evaluation of Code Quality, Conceptual Learning, and Student Perceptions. (2025). arXiv:2510.00946.</a><span class="src">arxiv.org</span></li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>مؤمن ذكي فاروق ذكي — 2502024 — تطبيقات الإنترنت والمنصات الإلكترونية</footer>
+
+</body>
+</html>
